@@ -14,7 +14,7 @@ public class App {
         Properties props = new Properties();
         props.load(new FileInputStream("config.ini"));
         String apiKey = props.getProperty("API_KEY");
-        String baseUrl = "https://imdb-api.com/en/API/Top250Movies/";
+        String baseUrl = "https://imdb-api.com/en/API/MostPopularMovies/";
         String url = baseUrl + apiKey;
         URI address = URI.create(url);
         var client = HttpClient.newHttpClient();
@@ -26,6 +26,18 @@ public class App {
         for (Map<String,String> movie: dataList){
             System.out.println(movie.get("title"));
             System.out.println(movie.get("imDbRating"));
+            int roundRating;
+            try {
+                Float rating = Float.parseFloat(movie.get("imDbRating"));
+                roundRating = Math.round(rating);
+            } catch (Exception e){
+                roundRating = 0;
+            }
+            StringBuilder stars = new StringBuilder();
+            for (int i = 0; i < roundRating; i++) {
+                stars.append("⭐");
+            }
+            System.out.println(stars);
             System.out.println();
         }
     }
