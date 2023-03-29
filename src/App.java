@@ -34,10 +34,7 @@ public class App {
                 System.out.println("imdb rating not available");
                 roundRating = 0;
             }
-            StringBuilder stars = new StringBuilder();
-            for (int i = 0; i < roundRating; i++) {
-                stars.append("⭐");
-            }
+            String stars = "⭐".repeat(roundRating);
             System.out.println(stars);
             System.out.println();
         }
