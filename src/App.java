@@ -31,6 +31,7 @@ public class App {
                 Float rating = Float.parseFloat(movie.get("imDbRating"));
                 roundRating = Math.round(rating);
             } catch (Exception e){
+                System.out.println("imdb rating not available");
                 roundRating = 0;
             }
             StringBuilder stars = new StringBuilder();
